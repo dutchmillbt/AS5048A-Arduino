@@ -129,7 +129,9 @@ word AS5048A::getErrors(){
  * Set the zero position
  */
 void AS5048A::setZeroPosition(word arg_position){
-	position = arg_position % 0x3FFF;
+	AS5048A::write(AS5048A_OTP_REGISTER_ZERO_POS_HIGH, (uint16_t) (arg_position >> 6));
+	AS5048A::write(AS5048A_OTP_REGISTER_ZERO_POS_LOW, (uint16_t) (arg_position & 0x3FFF));
+	return;	
 }
 
 /*
